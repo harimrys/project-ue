@@ -9,7 +9,6 @@ def clean_data(df):
     return df
 
 def change_value(df):
-
     gender_map = {"F:Females": "Females", "M:Males": "Males", "T:Total": "Total", "F": "Females", "M": "Males", "T": "Total"}
     df["sex"] = df["sex"].map(gender_map)
 
@@ -18,13 +17,13 @@ def change_value(df):
 
     return df
 
+
 def drop_columns_education(df): # Elimina las columnas de la tabla educación que no son útiles para el estudio
     df.drop("last_update", axis = 1, inplace = True)
     df.drop("freq", axis = 1, inplace = True)
     df.drop("unit", axis = 1, inplace = True)
     df.drop("obs_flag", axis = 1, inplace = True)
     df.drop("dataflow", axis = 1, inplace = True)
-
     return df
 
 def drop_columns_unemployment(df): # Elimina las columnas de la tabla desempleo que no son útiles para el estudio
@@ -33,7 +32,6 @@ def drop_columns_unemployment(df): # Elimina las columnas de la tabla desempleo 
     df.drop("unit", axis = 1, inplace = True)
     df.drop("obs_flag", axis = 1, inplace = True)
     df.drop("dataflow", axis = 1, inplace = True)
-
     return df
 
 def change_name_country_education(df):
@@ -74,4 +72,3 @@ def column_names_unemployment(df):
     df.rename(columns={"time_period": "year"}, inplace=True)
     df.rename(columns={"obs_value": "value_unemployment"}, inplace=True)
     return df
-
