@@ -81,3 +81,7 @@ def column_names_unemployment(df):
     df.rename(columns={"time_period": "year"}, inplace=True)
     df.rename(columns={"obs_value": "value_unemployment"}, inplace=True)
     return df
+
+def nulos(df):
+    df = df.dropna()
+    return df
