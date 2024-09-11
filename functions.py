@@ -10,7 +10,7 @@ def clean_data(df):
 
 def change_value(df):
 
-    gender_map = {"F:Females": "Females", "M:Males": "Males", "T:Total": "Total"}
+    gender_map = {"F:Females": "Females", "M:Males": "Males", "T:Total": "Total", "F": "Females", "M": "Males", "T": "Total"}
     df["sex"] = df["sex"].map(gender_map)
 
 
