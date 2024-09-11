@@ -57,8 +57,8 @@ def change_name_country_education(df):  #Cambia los valores en la columna countr
     return df
 
 def change_name_country_unemployment(df): #Cambia los valores en la columna country para la tabla unemployment
-    geo_map = {"AT": "Austria", "BE:": "Belgium", "BG": "Bulgaria", "CH": "Switzerland", "CY": "Cyprus", "CZ": "Czechia",
-               "DE": "Germany", "DK": "Denmark", "EE": "Estonia", "EL": "Greece", "ES:": "Spain", "FI": "Finland", "FR": "France", 
+    geo_map = {"AT": "Austria", "BE": "Belgium", "BG": "Bulgaria", "CH": "Switzerland", "CY": "Cyprus", "CZ": "Czechia",
+               "DE": "Germany", "DK": "Denmark", "EE": "Estonia", "EL": "Greece", "ES": "Spain", "FI": "Finland", "FR": "France", 
                "HR": "Croatia", "HU": "Hungary", "IE": "Ireland", "IS": "Iceland", "IT": "Italy", 
                "LT": "Lithuania", "LU": "Luxembourg", "LV": "Latvia",
                "ME": "Montenegro", "MK": "North Macedonia", "MT": "Malta", "NL": "Netherlands",
@@ -83,5 +83,5 @@ def column_names_unemployment(df):
     return df
 
 def nulos(df):
-    df = df.dropna()
+    df = df.dropna(how = "any")
     return df
