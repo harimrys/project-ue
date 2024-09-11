@@ -20,3 +20,22 @@ def change_value(df):
     df["freq"] = df["freq"].map(freq_map)
 
     return df
+
+def drop_columns_education(df): # Elimina las columnas de la tabla educación que no son útiles para el estudio
+    df.drop("last_update", axis = 1, inplace = True)
+    df.drop("freq", axis = 1, inplace = True)
+    df.drop("unit", axis = 1, inplace = True)
+    df.drop("obs_flag", axis = 1, inplace = True)
+    df.drop("dataflow", axis = 1, inplace = True)
+
+    return df
+
+def drop_columns_unemployment(df): # Elimina las columnas de la tabla desempleo que no son útiles para el estudio
+    df.drop("last_update", axis = 1, inplace = True)
+    df.drop("freq", axis = 1, inplace = True)
+    df.drop("unit", axis = 1, inplace = True)
+    df.drop("obs_flag", axis = 1, inplace = True)
+    df.drop("dataflow", axis = 1, inplace = True)
+
+
+    return df
