@@ -34,21 +34,6 @@ def drop_columns_unemployment(df): # Elimina las columnas de la tabla desempleo 
     df.drop("obs_flag", axis = 1, inplace = True)
     df.drop("dataflow", axis = 1, inplace = True)
 
-
-    return df
-
-def column_names_education(df):
-    df.rename(columns={"isced11": "level_education"}, inplace=True)
-    df.rename(columns={"geo": "country"}, inplace=True)
-    df.rename(columns={"time_period": "year"}, inplace=True)
-    df.rename(columns={"obs_value": "value_education"}, inplace=True)
-    return df
-
-def column_names_unemployment(df):
-    df.rename(columns={"isced11": "level_education"}, inplace=True)
-    df.rename(columns={"geo": "country"}, inplace=True)
-    df.rename(columns={"time_period": "year"}, inplace=True)
-    df.rename(columns={"obs_value": "value_unemployment"}, inplace=True)
     return df
 
 def change_name_country_education(df):
@@ -75,3 +60,18 @@ def change_name_country_unemployment(df):
                "UK": "United Kingdom"}
     df["country"] = df["country"].map(geo_map)
     return df
+
+def column_names_education(df):
+    df.rename(columns={"isced11": "level_education"}, inplace=True)
+    df.rename(columns={"geo": "country"}, inplace=True)
+    df.rename(columns={"time_period": "year"}, inplace=True)
+    df.rename(columns={"obs_value": "value_education"}, inplace=True)
+    return df
+
+def column_names_unemployment(df):
+    df.rename(columns={"isced11": "level_education"}, inplace=True)
+    df.rename(columns={"geo": "country"}, inplace=True)
+    df.rename(columns={"time_period": "year"}, inplace=True)
+    df.rename(columns={"obs_value": "value_unemployment"}, inplace=True)
+    return df
+
