@@ -4,8 +4,28 @@ def read_data(url):
     df = pd.read_csv(url)
     return df
 
-def clean_data(df):  # Cambia los nombres de las columnas a minúsculas y los espacios por _
+def clean_columns(df):  # Cambia los nombres de las columnas a minúsculas y los espacios por _
     df.columns = df.columns.str.lower().str.replace(" ", "_") 
+
+    df.drop("last_update", axis = 1, inplace = True)
+    df.drop("freq", axis = 1, inplace = True)
+    df.drop("unit", axis = 1, inplace = True)
+    df.drop("obs_flag", axis = 1, inplace = True)
+    df.drop("dataflow", axis = 1, inplace = True)
+    return df
+
+def column_names_education(df):
+    df.rename(columns = {"isced11": "level_education"}, inplace = True)
+    df.rename(columns = {"geo": "country"}, inplace = True)
+    df.rename(columns = {"time_period": "year"}, inplace = True)
+    df.rename(columns = {"obs_value": "value_education"}, inplace = True)
+    return df
+
+def column_names_unemployment(df):
+    df.rename(columns = {"isced11": "level_education"}, inplace = True)
+    df.rename(columns = {"geo": "country"}, inplace = True)
+    df.rename(columns = {"time_period": "year"}, inplace = True)
+    df.rename(columns = {"obs_value": "value_unemployment"}, inplace = True)
     return df
 
 def change_value(df):  # Iguala los valores de género, edad y nivel educativo en ambas tablas
@@ -26,7 +46,7 @@ def change_value(df):  # Iguala los valores de género, edad y nivel educativo e
 
     return df
 
-
+"""
 def drop_columns_education(df): # Elimina las columnas de la tabla educación que no son útiles para el estudio
     df.drop("last_update", axis = 1, inplace = True)
     df.drop("freq", axis = 1, inplace = True)
@@ -42,6 +62,7 @@ def drop_columns_unemployment(df): # Elimina las columnas de la tabla desempleo 
     df.drop("obs_flag", axis = 1, inplace = True)
     df.drop("dataflow", axis = 1, inplace = True)
     return df
+"""
 
 def change_name_country_education(df):  #Cambia los valores en la columna country para la tabla education
     geo_map = {"AT:Austria" : "Austria", "BA:Bosnia and Herzegovina": "Bosnia and Herzegovina", "BE:Belgium": "Belgium",
@@ -68,19 +89,28 @@ def change_name_country_unemployment(df): #Cambia los valores en la columna coun
     df["country"] = df["country"].map(geo_map)
     return df
 
+"""
 def column_names_education(df):
-    df.rename(columns={"isced11": "level_education"}, inplace=True)
-    df.rename(columns={"geo": "country"}, inplace=True)
-    df.rename(columns={"time_period": "year"}, inplace=True)
-    df.rename(columns={"obs_value": "value_education"}, inplace=True)
+    df.rename(columns = {"isced11": "level_education"}, inplace = True)
+    df.rename(columns = {"geo": "country"}, inplace = True)
+    df.rename(columns = {"time_period": "year"}, inplace = True)
+    df.rename(columns = {"obs_value": "value_education"}, inplace = True)
     return df
 
 def column_names_unemployment(df):
-    df.rename(columns={"isced11": "level_education"}, inplace=True)
-    df.rename(columns={"geo": "country"}, inplace=True)
-    df.rename(columns={"time_period": "year"}, inplace=True)
-    df.rename(columns={"obs_value": "value_unemployment"}, inplace=True)
+    df.rename(columns = {"isced11": "level_education"}, inplace = True)
+    df.rename(columns = {"geo": "country"}, inplace = True)
+    df.rename(columns = {"time_period": "year"}, inplace = True)
+    df.rename(columns = {"obs_value": "value_unemployment"}, inplace = True)
     return df
+"""
+def drop_duplicates(df):
+    df = df.drop_duplicates(subset=["sex", "level_education", "age", "country", "year"])
+    return df
+
+def comb_merg(df1, df2):
+    df_limpio = pd.merge(df1, df2, on = ["sex", "level_education", "age", "country", "year"], how = "right")
+    return df_limpio
 
 def nulos(df):
     df = df.dropna(how = "any")
