@@ -85,3 +85,70 @@ def column_names_unemployment(df):
 def nulos(df):
     df = df.dropna(how = "any")
     return df
+
+def fill_nan(df):
+    df.loc[(df["country"] == "Cyprus") & (df["level_education"] == "ESO"), "value_unemployment"] = df["value_unemployment"].ffill()
+    df.loc[(df["country"] == "Cyprus") & (df["level_education"] == "FP"), "value_unemployment"] = df["value_unemployment"].ffill()
+
+    df.loc[(df["country"] == "Estonia") & (df["level_education"] == "FP"), "value_unemployment"] = df["value_unemployment"].ffill()
+    df.loc[(df["country"] == "Estonia") & (df["level_education"] == "UNIVERSIDAD"), "value_unemployment"] = df["value_unemployment"].ffill()
+    df.loc[(df["country"] == "Estonia") & (df["level_education"] == "ESO"), "value_unemployment"] = df["value_unemployment"].ffill()
+    df.loc[(df["country"] == "Estonia") & (df["level_education"] == "BACH"), "value_unemployment"] = df["value_unemployment"].ffill()
+
+    df.loc[(df["country"] == "Croatia") & (df["level_education"] == "ESO"), "value_unemployment"] = df["value_unemployment"].ffill()
+    df.loc[(df["country"] == "Croatia") & (df["level_education"] == "BACH"), "value_unemployment"] = df["value_unemployment"].ffill()
+
+    df.loc[(df["country"] == "Ireland") & (df["level_education"] == "FP"), "value_unemployment"] = df["value_unemployment"].ffill()
+    df.loc[(df["country"] == "Ireland") & (df["level_education"] == "ESO"), "value_unemployment"] = df["value_unemployment"].ffill()
+
+    df.loc[(df["country"] == "Lithuania") & (df["level_education"] == "ESO"), "value_unemployment"] = df["value_unemployment"].ffill()
+
+    df.loc[(df["country"] == "Latvia") & (df["level_education"] == "ESO"), "value_unemployment"] = df["value_unemployment"].ffill()
+    df.loc[(df["country"] == "Latvia") & (df["level_education"] == "BACH-FP"), "value_unemployment"] = df["value_unemployment"].ffill()
+    df.loc[(df["country"] == "Latvia") & (df["level_education"] == "BACH"), "value_unemployment"] = df["value_unemployment"].ffill()
+    df.loc[(df["country"] == "Latvia") & (df["level_education"] == "FP"), "value_unemployment"] = df["value_unemployment"].ffill()
+    df.loc[(df["country"] == "Latvia") & (df["level_education"] == "UNIVERSIDAD"), "value_unemployment"] = df["value_unemployment"].ffill()
+
+    df.loc[(df["country"] == "Poland") & (df["level_education"] == "ESO"), "value_unemployment"] = df["value_unemployment"].ffill()
+
+    df.loc[(df["country"] == "Slovenia") & (df["level_education"] == "ESO"), "value_unemployment"] = df["value_unemployment"].ffill()
+    df.loc[(df["country"] == "Slovenia") & (df["level_education"] == "BACH"), "value_unemployment"] = df["value_unemployment"].ffill()
+    df.loc[(df["country"] == "Slovenia") & (df["level_education"] == "UNIVERSIDAD"), "value_unemployment"] = df["value_unemployment"].ffill()
+
+    df.loc[(df["country"] == "Slovakia") & (df["level_education"] == "ESO"), "value_unemployment"] = df["value_unemployment"].ffill()
+    df.loc[(df["country"] == "Slovakia") & (df["level_education"] == "BACH"), "value_unemployment"] = df["value_unemployment"].ffill()
+    df.loc[(df["country"] == "Slovakia") & (df["level_education"] == "UNIVERSIDAD"), "value_unemployment"] = df["value_unemployment"].ffill()
+
+    df.loc[(df["country"] == "Iceland") & (df["level_education"] == "BACH-FP"), "value_unemployment"] = df["value_unemployment"].ffill()
+    df.loc[(df["country"] == "Iceland") & (df["level_education"] == "BACH"), "value_unemployment"] = df["value_unemployment"].ffill()
+    df.loc[(df["country"] == "Iceland") & (df["level_education"] == "UNIVERSIDAD"), "value_unemployment"] = df["value_unemployment"].ffill()
+    df.loc[(df["country"] == "Iceland") & (df["level_education"] == "FP"), "value_unemployment"] = df["value_unemployment"].ffill()
+
+    df.loc[(df["country"] == "Norway") & (df["level_education"] == "BACH-FP"), "value_unemployment"] = df["value_unemployment"].ffill()
+    df.loc[(df["country"] == "Norway") & (df["level_education"] == "BACH"), "value_unemployment"] = df["value_unemployment"].ffill()
+    df.loc[(df["country"] == "Norway") & (df["level_education"] == "FP"), "value_unemployment"] = df["value_unemployment"].ffill()
+    df.loc[(df["country"] == "Norway") & (df["level_education"] == "UNIVERSIDAD"), "value_unemployment"] = df["value_unemployment"].ffill()
+
+    df.loc[(df["country"] == "Bulgaria") & (df["level_education"] == "FP"), "value_unemployment"] = df["value_unemployment"].ffill()
+    df.loc[(df["country"] == "Bulgaria") & (df["level_education"] == "UNIVERSIDAD"), "value_unemployment"] = df["value_unemployment"].ffill()
+
+    df.loc[(df["country"] == "Denmark") & (df["level_education"] == "FP"), "value_unemployment"] = df["value_unemployment"].ffill()
+    
+    df.loc[(df["country"] == "Finland") & (df["level_education"] == "UNIVERSIDAD"), "value_unemployment"] = df["value_unemployment"].ffill()
+
+    df.loc[(df["country"] == "Hungary") & (df["level_education"] == "UNIVERSIDAD"), "value_unemployment"] = df["value_unemployment"].ffill()
+
+    df.loc[(df["country"] == "Romania") & (df["level_education"] == "UNIVERSIDAD"), "value_unemployment"] = df["value_unemployment"].ffill()
+
+    return df
+
+def drop_rows(df):
+
+    df = df[df["country"] != "Bosnia and Herzegovina"]
+    df = df[df["country"] != "Luxembourg"]
+    df = df[df["country"] != "Montenegro"]
+    df = df[df["country"] != "Malta"]
+
+    df = df[df["level_education"] != "TOTAL"]
+
+    return df
