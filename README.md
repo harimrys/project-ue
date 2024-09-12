@@ -75,5 +75,5 @@ Nuestras hipótesis principales son:
 ## Créditos
 Este proyecto ha sido realizado por:
 - **Cristina Ramírez Díaz**
-- **Haridian Morays**
+- **Haridian Lugo Morays**
 
