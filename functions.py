@@ -152,3 +152,6 @@ def drop_rows(df):
     df = df[df["level_education"] != "TOTAL"]
 
     return df
+
+def create_csv(df):
+    df.to_csv('df_limpio.csv', index=False)
