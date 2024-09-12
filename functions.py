@@ -150,5 +150,45 @@ def drop_rows(df):
 
     return df
 
+def calcular_indice_educativo(df):
+    """
+    Calcula el índice educativo para un DataFrame con los datos de nivel educativo, país, sexo y año,
+    y rellena los valores NaN con el índice específico de cada país.
+    Parámetros:
+    df (pd.DataFrame): DataFrame con las columnas 'pais', 'nivel_educacion', 'porcentaje', 'sexo' y 'año'.
+    Retorna:
+    pd.DataFrame: DataFrame con el índice educativo calculado.
+    """
+    # Asignar valores numéricos a cada nivel educativo
+    valores_educacion = {'ESO': 1, 'FP': 2, "BACH-FP": 3, 'BACH': 4, 'UNIVERSIDAD': 5}
+    df['valor_educacion'] = df['level_education'].map(valores_educacion)
+    # Filtrar datos relevantes (sin la fila Total)
+    df_filtrado = df[df['sex'] != 'Total']
+    # Crear la columna ponderada
+    df_filtrado['ponderado'] = df_filtrado['value_education'] * df_filtrado['valor_educacion']
+    # Calcular el índice educativo por país, sexo y año
+
+    def calcular_indice(grupo):
+        indice = grupo['ponderado'].sum() / grupo['value_education'].sum()
+        return pd.Series({'indice_educativo': indice})
+    
+    df_indice = df_filtrado.groupby(['country', 'sex', 'year']).apply(calcular_indice).reset_index()
+    # Agregar índice educativo al DataFrame original
+    df_final = pd.merge(df, df_indice, on=['country', 'sex', 'year'], how='left')
+    # Rellenar NaNs en filas de Total con el índice específico de cada país
+
+    def rellenar_na_por_pais(grupo):
+        if grupo['indice_educativo'].isna().any():
+            # Calcular el índice promedio de los subgrupos del país
+            indice_pais = grupo[grupo['sex'] != 'Total']['indice_educativo'].mean()
+            grupo['indice_educativo'] = grupo['indice_educativo'].fillna(indice_pais)
+        return grupo
+    
+    df_final = df_final.groupby('country').apply(rellenar_na_por_pais).reset_index(drop=True)
+    df_final['indice_educativo'] = df_final['indice_educativo'].round(2)
+
+    return df_final
+
+
 def create_csv(df):
     df.to_csv('df_limpio.csv', index=False)
