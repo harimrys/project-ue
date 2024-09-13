@@ -72,6 +72,10 @@ Nuestras hipótesis principales son:
 - `functions_eda.py`: Funciones utilizadas para el análisis exploratorio.
 - `combined_data.csv`: Base de datos final, fusionada y limpia. 
 
+Además, adjuntamos los siguientes links:
+- [Organización en Notion](https://internal-dresser-af9.notion.site/Proyecto-1-58ce963929dd4ddabec8995a1330f477?pvs=4)
+- [Presentación del proyecto](https://www.canva.com/design/DAGQjzUUD24/jYNNdqMjRrBruntEWu9Brw/view?utm_content=DAGQjzUUD24&utm_campaign=designshare&utm_medium=link&utm_source=editor)
+
 ## Créditos
 Este proyecto ha sido realizado por:
 - **Cristina Ramírez Díaz**
