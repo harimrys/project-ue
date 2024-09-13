@@ -19,8 +19,8 @@ Nuestras hipótesis principales son:
 
 ## Bases de Datos Utilizadas
 
-- **Youth unemployment by sex, age and educational attainment level**  
-- **Young people by educational attainment level, sex and age**
+- [Youth unemployment by sex, age and educational attainment level](https://ec.europa.eu/eurostat/databrowser/view/yth_empl_090__custom_12827409/default/bar?lang=en)  
+- [Young people by educational attainment level, sex and age](https://ec.europa.eu/eurostat/databrowser/view/yth_demo_040/default/bar?lang=en&category=chldyth.yth.yth_educ) 
 
 ### Características de las bases de datos
 
